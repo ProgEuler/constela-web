@@ -40,7 +40,7 @@ export const roles: RoleConfig[] = [
     icon: Shield,
     color: "from-red-500 to-rose-600",
     navItems: [
-      { title: "Dashboard", url: "/dashboard/default", icon: LayoutDashboard },
+      { title: "Dashboard", url: "/dashboard/super-admin", icon: LayoutDashboard },
       { title: "Users", url: "/dashboard/users", icon: Users },
       { title: "Matches", url: "/dashboard/matches", icon: Heart },
       { title: "Subscriptions", url: "/dashboard/subscriptions", icon: CreditCard },
@@ -58,7 +58,7 @@ export const roles: RoleConfig[] = [
     icon: Users,
     color: "from-blue-500 to-indigo-600",
     navItems: [
-      { title: "Dashboard", url: "/dashboard/default", icon: LayoutDashboard },
+      { title: "Dashboard", url: "/dashboard/admin", icon: LayoutDashboard },
       { title: "Users", url: "/dashboard/users", icon: Users },
       { title: "Matches", url: "/dashboard/matches", icon: Heart },
       { title: "Chat", url: "/dashboard/chat", icon: MessageSquare },
@@ -73,7 +73,7 @@ export const roles: RoleConfig[] = [
     icon: Eye,
     color: "from-emerald-500 to-teal-600",
     navItems: [
-      { title: "Dashboard", url: "/dashboard/default", icon: LayoutDashboard },
+      { title: "Dashboard", url: "/dashboard/moderator", icon: LayoutDashboard },
       { title: "Reports", url: "/dashboard/reports", icon: Signal },
       { title: "Photo Verification", url: "/dashboard/photo-verification", icon: Camera },
     ],

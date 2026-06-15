@@ -1,47 +1,100 @@
-import { Shield, Users, Heart, CreditCard, DollarSign, Signal, MessageSquare, Settings } from "lucide-react"
+import { Users, Heart, CreditCard, DollarSign, UserCheck, AreaChart } from "lucide-react"
 
-import { Card } from "@/components/ui/card"
+import { Card, CardTitle } from "@/components/ui/card"
+import StatCard from "@/components/shared/stat-card"
+import { LineChartComp } from "@/components/charts/line-chart"
+import { PieChartComp } from "@/components/charts/pie-chart"
+import IconWrap from "@/components/common/icon-wrapper"
+import { AreaChartComp } from "@/components/charts/area-chart"
+import { BarChartComp } from "@/components/charts/bar-chart"
 
 export default function SuperAdminDashboard() {
   const stats = [
     { label: "Total Users", value: "24,582", change: "+12.5%", icon: Users },
     { label: "Active Matches", value: "8,341", change: "+8.2%", icon: Heart },
     { label: "Revenue", value: "$128,490", change: "+23.1%", icon: DollarSign },
-    { label: "Subscriptions", value: "12,047", change: "+5.4%", icon: CreditCard },
+    {
+      label: "Subscriptions",
+      value: "12,047",
+      change: "+5.4%",
+      icon: CreditCard,
+    },
   ]
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight">Super Admin Dashboard</h1>
-        <p className="text-muted-foreground">Full platform oversight and system management.</p>
-      </div>
-
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat) => {
-          const Icon = stat.icon
-          return (
-            <Card key={stat.label} className="p-4">
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">{stat.label}</span>
-                <Icon className="h-4 w-4 text-muted-foreground" />
-              </div>
-              <p className="mt-2 text-2xl font-bold">{stat.value}</p>
-              <p className="text-xs text-emerald-600 dark:text-emerald-400">{stat.change} from last month</p>
-            </Card>
-          )
+          return <StatCard key={stat.label} {...stat} />
         })}
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {/* Registrations graph */}
+        <LineChartComp />
+        {/* User pie chart */}
+        <PieChartComp />
+        {/* activity list */}
         <Card className="p-4">
-          <h2 className="mb-2 font-semibold">Recent Reports</h2>
-          <p className="text-sm text-muted-foreground">12 new reports flagged in the last 24 hours</p>
+          <CardTitle>Real-time Activity</CardTitle>
+          <div className="space-y-4">
+            <div className="flex gap-4">
+              <IconWrap>
+                <UserCheck />
+              </IconWrap>
+              <div className="flex items-center gap-2">
+                <span className="text-sm">New user registered</span>
+                <span className="text-xs text-muted-foreground">
+                  2 minutes ago
+                </span>
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <IconWrap>
+                <UserCheck />
+              </IconWrap>
+              <div className="flex items-center gap-2">
+                <span className="text-sm">New user registered</span>
+                <span className="text-xs text-muted-foreground">
+                  2 minutes ago
+                </span>
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <IconWrap>
+                <UserCheck />
+              </IconWrap>
+              <div className="flex items-center gap-2">
+                <span className="text-sm">New user registered</span>
+                <span className="text-xs text-muted-foreground">
+                  2 minutes ago
+                </span>
+              </div>
+            </div>
+          </div>
         </Card>
+        {/* top countries */}
         <Card className="p-4">
-          <h2 className="mb-2 font-semibold">Pending Moderation</h2>
-          <p className="text-sm text-muted-foreground">47 items awaiting review</p>
-        </Card>
+            <CardTitle>Top Countries</CardTitle>
+            <div className="space-y-4">
+               <div className="flex items-center gap-4">
+                  <span className="text-sm">United States</span>
+                  <span className="text-xs text-muted-foreground">35% of users</span>
+               </div>
+               <div className="flex items-center gap-4">
+                  <span className="text-sm">India</span>
+                  <span className="text-xs text-muted-foreground">25% of users</span>
+               </div>
+               <div className="flex items-center gap-4">
+                  <span className="text-sm">United Kingdom</span>
+                  <span className="text-xs text-muted-foreground">15% of users</span>
+               </div>
+            </div>
+         </Card>
+        {/* revenue graph */}
+        <AreaChartComp />
+        {/* reports bar chart */}
+        <BarChartComp />
       </div>
     </div>
   )
