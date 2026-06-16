@@ -1,11 +1,14 @@
 import { Card } from "@/components/ui/card"
 import IconWrap from "../common/icon-wrapper"
 
+type StatIconColor = "default" | "success" | "warning" | "destructive" | "muted"
+
 interface Stat {
   label: string
   value: string
   change: string
   icon?: React.ComponentType<{ className?: string }>
+  iconColor?: StatIconColor
 }
 
 interface StatCardProps {
@@ -13,13 +16,19 @@ interface StatCardProps {
   className?: string
 }
 
-export type { Stat }
+export type { Stat, StatIconColor }
+
+const iconColorClasses: Record<StatIconColor, string> = {
+  default: "bg-primary text-primary-foreground",
+  success: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
+  warning: "bg-amber-500/10 text-amber-600 dark:text-amber-400",
+  destructive: "bg-destructive/10 text-destructive",
+  muted: "bg-muted text-muted-foreground",
+}
 
 export default function StatCard({ stats, className }: StatCardProps) {
   return (
-    <div
-      className={className ?? "grid gap-4 sm:grid-cols-2 lg:grid-cols-4"}
-    >
+    <div className={className ?? "grid gap-4 sm:grid-cols-2 lg:grid-cols-4"}>
       {stats.map((stat) => {
         const IconComponent = stat.icon
         return (
@@ -28,7 +37,9 @@ export default function StatCard({ stats, className }: StatCardProps) {
               <span className="text-sm text-muted-foreground">
                 {stat.label}
               </span>
-              <IconWrap>
+              <IconWrap
+                className={iconColorClasses[stat.iconColor ?? "default"]}
+              >
                 {IconComponent ? <IconComponent /> : null}
               </IconWrap>
             </div>

@@ -1,8 +1,21 @@
 import { type ReactNode } from "react"
 
-export default function IconWrap({ children }: { children: ReactNode }) {
+import { cn } from "@/lib/utils"
+
+export default function IconWrap({
+  children,
+  className,
+}: {
+  children: ReactNode
+  className?: string
+}) {
   return (
-    <div className="rounded-full bg-primary p-2 *:h-4 *:w-4 *:text-white">
+    <div
+      className={cn(
+        "rounded-full bg-primary p-2 text-primary-foreground [&_svg]:h-4 [&_svg]:w-4",
+        className
+      )}
+    >
       {children}
     </div>
   )
