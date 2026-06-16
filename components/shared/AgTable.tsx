@@ -24,6 +24,10 @@ import {
 import type { DateRange } from "react-day-picker"
 import { createShadcnAgGridTheme } from "@/lib/ag-grid-shadcn-theme"
 import { cn } from "@/lib/utils"
+import {
+  renderTableUserCell,
+  renderTableUserCellWithEmail,
+} from "./table-user-cell"
 
 const modules = [AllCommunityModule]
 
@@ -91,6 +95,15 @@ export function AgTable<TData extends object>({
     if (!mounted) return createShadcnAgGridTheme()
     return createShadcnAgGridTheme()
   }, [theme, mounted, colorScheme])
+
+  const gridComponents = useMemo<GridOptions<TData>["components"]>(
+    () => ({
+      tableUserCell: renderTableUserCell,
+      tableUserCellWithEmail: renderTableUserCellWithEmail,
+      ...components,
+    }),
+    [components]
+  )
 
   const hasExplicitNoColumn = useMemo(() => {
     const isNoHeader = (value: unknown) => {
@@ -328,7 +341,7 @@ export function AgTable<TData extends object>({
           defaultColDef={mergedDefaultColDef}
           theme={gridTheme}
           domLayout={isAutoHeight ? "autoHeight" : "normal"}
-          components={components}
+          components={gridComponents}
           rowSelection={rowSelection}
           onSelectionChanged={handleSelectionChanged}
           onGridReady={handleGridReady}
