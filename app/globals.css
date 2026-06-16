@@ -127,3 +127,17 @@
     @apply font-sans;
     }
 }
+
+@layer components {
+  .ag-table-shadcn .ag-paging-panel {
+    @apply border-t border-border text-sm text-muted-foreground;
+  }
+
+  .ag-table-shadcn .ag-header {
+    @apply border-b border-border;
+  }
+
+  .ag-table-shadcn .ag-header-cell-text {
+    @apply font-normal;
+  }
+}
