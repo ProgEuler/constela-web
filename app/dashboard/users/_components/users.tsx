@@ -78,7 +78,7 @@ export function Users({ users }: { users: UserRow[] }) {
 
   return (
     <Card>
-      <CardHeader className="border-b has-data-[slot=card-action]:grid-cols-1 md:has-data-[slot=card-action]:grid-cols-[1fr_auto]">
+      {/* <CardHeader className="border-b has-data-[slot=card-action]:grid-cols-1 md:has-data-[slot=card-action]:grid-cols-[1fr_auto]">
         <CardTitle className="text-xl leading-none">Users</CardTitle>
         <CardDescription className="max-w-sm leading-snug">
           Manage your organization members and their access.
@@ -114,7 +114,7 @@ export function Users({ users }: { users: UserRow[] }) {
             <Plus /> Add User
           </Button>
         </CardAction>
-      </CardHeader>
+      </CardHeader> */}
       <CardContent className="flex flex-col gap-4 px-0">
         <div className="flex flex-wrap items-center justify-between gap-3 px-4">
           <div className="flex flex-wrap items-center gap-3">
@@ -184,7 +184,7 @@ export function Users({ users }: { users: UserRow[] }) {
           </Select>
         </div>
 
-        <div className="flex items-center justify-between gap-3 px-4">
+        {/* <div className="flex items-center justify-between gap-3 px-4">
           <div className="text-muted-foreground text-sm tabular-nums">{selectedCount} selected</div>
 
           <Tabs defaultValue="list">
@@ -197,7 +197,7 @@ export function Users({ users }: { users: UserRow[] }) {
               </TabsTrigger>
             </TabsList>
           </Tabs>
-        </div>
+        </div> */}
 
         <UsersTable table={table} />
       </CardContent>
