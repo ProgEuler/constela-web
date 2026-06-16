@@ -1,3 +1,4 @@
+import { AgTable } from "@/components/shared/AgTable"
 import StatCard from "@/components/shared/stat-card"
 import { Heart, TrendingUp } from "lucide-react"
 
@@ -17,6 +18,36 @@ export default function Page() {
   return (
     <div className="space-y-6">
       <StatCard stats={data} />
+
+      <AgTable
+        columnDefs={[
+          { headerName: "Match ID", field: "matchId" },
+          {
+            headerName: "Participants",
+            field: "participants",
+            cellRenderer: "tableUserCell",
+          },
+          { headerName: "Messages", field: "messages" },
+          { headerName: "Date", field: "date" },
+          { headerName: "Status", field: "status" },
+        ]}
+        rowData={[
+          {
+            matchId: "M12345",
+            participants: "Alice, Bob",
+            messages: 45,
+            date: "2023-10-01",
+            status: "Active",
+          },
+          {
+            matchId: "M67890",
+            participants: "Charlie, Dave",
+            messages: 30,
+            date: "2023-10-02",
+            status: "Completed",
+          },
+        ]}
+      />
     </div>
   )
 }
