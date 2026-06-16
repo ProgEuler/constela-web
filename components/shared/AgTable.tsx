@@ -1,6 +1,13 @@
 "use client"
 
-import { useMemo, useRef, useCallback, useState, useEffect } from "react"
+import {
+  type ReactNode,
+  useMemo,
+  useRef,
+  useCallback,
+  useState,
+  useEffect,
+} from "react"
 import { useTheme } from "next-themes"
 import { AgGridProvider, AgGridReact } from "ag-grid-react"
 import {
@@ -14,25 +21,6 @@ import {
   type GridApi,
   type Theme,
 } from "ag-grid-community"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import { Field, FieldContent, FieldLabel } from "@/components/ui/field"
-import { Calendar } from "../ui/calendar"
-import { format } from "date-fns"
 import type { DateRange } from "react-day-picker"
 import { createShadcnAgGridTheme } from "@/lib/ag-grid-shadcn-theme"
 import { cn } from "@/lib/utils"
@@ -40,6 +28,7 @@ import { cn } from "@/lib/utils"
 const modules = [AllCommunityModule]
 
 type AgTableProps<TData extends object> = {
+  title?: ReactNode
   rowData?: TData[] | null
   columnDefs: ColDef<TData>[]
   showRowNumberColumn?: boolean
@@ -63,6 +52,7 @@ type AgTableProps<TData extends object> = {
 }
 
 export function AgTable<TData extends object>({
+  title,
   rowData,
   columnDefs,
   showRowNumberColumn = true,
@@ -155,7 +145,7 @@ export function AgTable<TData extends object>({
       flex: 1,
       minWidth: 150,
       resizable: true,
-      filter: true,
+      filter: false,
       sortable: true,
       wrapHeaderText: true,
       autoHeaderHeight: true,
@@ -325,7 +315,13 @@ export function AgTable<TData extends object>({
 
   return (
     <AgGridProvider modules={modules}>
-      <div className={cn("ag-table-shadcn w-full", className)} style={containerStyle}>
+      {title ? (
+        <h2 className="mb-3 text-base font-medium text-foreground">{title}</h2>
+      ) : null}
+      <div
+        className={cn("ag-table-shadcn w-full", className)}
+        style={containerStyle}
+      >
         <AgGridReact<TData>
           rowData={rowData}
           columnDefs={resolvedColumnDefs}
@@ -351,89 +347,6 @@ export function AgTable<TData extends object>({
           {...gridOptions}
         />
       </div>
-
-      <Dialog open={isExportDialogOpen} onOpenChange={setIsExportDialogOpen}>
-        <DialogContent className="sm:max-w-[480px]">
-          <DialogHeader>
-            <DialogTitle>Export table data</DialogTitle>
-            <DialogDescription>
-              Choose a date field and date range, then download the matching
-              rows as CSV.
-            </DialogDescription>
-          </DialogHeader>
-
-          <div className="grid gap-4 py-2">
-            <div className="grid gap-3">
-              <Field>
-                <FieldLabel>Date field</FieldLabel>
-                <FieldContent>
-                  <Select value={dateField} onValueChange={setDateField}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select date field" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {dateColumns.length > 0 ? (
-                        dateColumns.map((field) => (
-                          <SelectItem key={String(field)} value={String(field)}>
-                            {String(field)}
-                          </SelectItem>
-                        ))
-                      ) : (
-                        <SelectItem value="__none__" disabled>
-                          No date columns available
-                        </SelectItem>
-                      )}
-                    </SelectContent>
-                  </Select>
-                </FieldContent>
-              </Field>
-
-              <Field>
-                <FieldLabel>Date range</FieldLabel>
-                <FieldContent>
-                  <div className="rounded-lg border border-input bg-input/30 p-2">
-                    <Calendar
-                      mode="range"
-                      selected={dateRange}
-                      onSelect={setDateRange}
-                      numberOfMonths={2}
-                      captionLayout="dropdown"
-                    />
-                  </div>
-
-                  {dateRange?.from || dateRange?.to ? (
-                    <p className="mt-2 text-xs text-muted-foreground">
-                      {dateRange.from
-                        ? `From ${format(dateRange.from, "yyyy-MM-dd")}`
-                        : "From not selected"}{" "}
-                      {dateRange.to
-                        ? `to ${format(dateRange.to, "yyyy-MM-dd")}`
-                        : "to not selected"}
-                    </p>
-                  ) : null}
-                </FieldContent>
-              </Field>
-            </div>
-
-            {exportMessage ? (
-              <p className="text-xs text-muted-foreground">{exportMessage}</p>
-            ) : null}
-          </div>
-
-          <DialogFooter>
-            <Button
-              variant="outline"
-              type="button"
-              onClick={() => setIsExportDialogOpen(false)}
-            >
-              Cancel
-            </Button>
-            <Button type="button" onClick={handleExport}>
-              Export CSV
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
     </AgGridProvider>
   )
 }

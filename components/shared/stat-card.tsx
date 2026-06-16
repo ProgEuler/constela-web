@@ -20,9 +20,9 @@ export type { Stat, StatIconColor }
 
 const iconColorClasses: Record<StatIconColor, string> = {
   default: "bg-primary text-primary-foreground",
-  success: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
-  warning: "bg-amber-500/10 text-amber-600 dark:text-amber-400",
-  destructive: "bg-destructive/10 text-destructive",
+  success: "bg-emerald-500",
+  warning: "bg-amber-500",
+  destructive: "bg-destructive",
   muted: "bg-muted text-muted-foreground",
 }
 

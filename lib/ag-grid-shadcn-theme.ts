@@ -76,6 +76,7 @@ export function createShadcnAgGridTheme(): Theme {
   const input = readColor("--input", LIGHT_FALLBACK.input)
   const ring = readColor("--ring", LIGHT_FALLBACK.ring)
   const radius = readLength("--radius", LIGHT_FALLBACK.radius)
+  const tableRadius = readLength("--radius-2xl", radius * 1.8)
   const inputRadius = readLength("--radius-4xl", radius * 2.6)
 
   return themeQuartz.withParams({
@@ -104,15 +105,15 @@ export function createShadcnAgGridTheme(): Theme {
     subtleTextColor: mutedForeground,
     iconColor: mutedForeground,
 
-    rowHeight: 52,
+    rowHeight: 42,
     fontSize: 14,
     dataFontSize: 14,
     fontWeight: 400,
     cellHorizontalPadding: 16,
     spacing: 8,
 
-    borderRadius: radius,
-    wrapperBorderRadius: 0,
+    borderRadius: tableRadius,
+    wrapperBorderRadius: tableRadius,
     wrapperBorder: { width: 1, color: border },
     rowBorder: { width: 1, color: border },
 
