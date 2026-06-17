@@ -157,6 +157,8 @@ export function AgTable<TData extends object>({
     () => ({
       flex: 1,
       minWidth: 150,
+      cellClass: "text-center",
+      headerClass: "text-center",
       resizable: true,
       filter: false,
       sortable: true,

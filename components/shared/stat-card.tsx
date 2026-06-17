@@ -6,7 +6,7 @@ type StatIconColor = "default" | "success" | "warning" | "destructive" | "muted"
 interface Stat {
   label: string
   value: string
-  change: string
+  change?: string
   icon?: React.ComponentType<{ className?: string }>
   iconColor?: StatIconColor
 }
@@ -44,9 +44,11 @@ export default function StatCard({ stats, className }: StatCardProps) {
               </IconWrap>
             </div>
             <p className="mt-2 text-2xl font-bold">{stat.value}</p>
-            <p className="text-xs text-emerald-600 dark:text-emerald-400">
-              {stat.change} from last month
-            </p>
+            {stat.change && (
+              <p className="text-xs text-emerald-600 dark:text-emerald-400">
+                {stat.change} from last month
+              </p>
+            )}
           </Card>
         )
       })}

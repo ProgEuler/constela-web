@@ -139,5 +139,13 @@
 
   .ag-table-shadcn .ag-header-cell-text {
     @apply font-normal;
+    text-align: center;
+    width: 100%;
+  }
+
+  .ag-table-shadcn .ag-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
