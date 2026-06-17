@@ -1,46 +1,107 @@
-import { Camera, Eye, Signal } from "lucide-react"
+import {
+  Users,
+  Heart,
+  CreditCard,
+  DollarSign,
+  CircleAlert,
+  ClipboardMinus,
+  StickyNoteCheck,
+  UserRoundX,
+} from "lucide-react"
+import StatCard from "@/components/shared/stat-card"
+import { BarChartComp } from "@/components/charts/bar-chart"
+import { AgTable } from "@/components/shared/AgTable"
 
-import { Card } from "@/components/ui/card"
-
-export default function ModeratorDashboard() {
+export default function SuperAdminDashboard() {
   const stats = [
-    { label: "Open Reports", value: "156", change: "+12 today", icon: Signal },
-    { label: "Pending Verification", value: "89", change: "34 reviewed today", icon: Camera },
-    { label: "Resolved Today", value: "43", change: "+15% efficiency", icon: Eye },
+    {
+      label: "Pending Reports",
+      value: "24,582",
+      change: "+12.5%",
+      icon: CircleAlert,
+      iconColor: "warning",
+    },
+    {
+      label: "Under Review",
+      value: "8,341",
+      change: "+8.2%",
+      icon: ClipboardMinus,
+    },
+    {
+      label: "Resolved Today",
+      value: "$128,490",
+      change: "+23.1%",
+      icon: StickyNoteCheck,
+    },
+    {
+      label: "Accounts Suspended",
+      value: "1,234",
+      change: "+5.4%",
+      icon: UserRoundX,
+      iconColor: "destructive",
+    },
   ]
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight">Moderator Dashboard</h1>
-        <p className="text-muted-foreground">Review reports, verify photos, and monitor platform activity.</p>
-      </div>
+      <StatCard stats={stats} />
 
-      <div className="grid gap-4 sm:grid-cols-3">
-        {stats.map((stat) => {
-          const Icon = stat.icon
-          return (
-            <Card key={stat.label} className="p-4">
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">{stat.label}</span>
-                <Icon className="h-4 w-4 text-muted-foreground" />
-              </div>
-              <p className="mt-2 text-2xl font-bold">{stat.value}</p>
-              <p className="text-xs text-emerald-600 dark:text-emerald-400">{stat.change}</p>
-            </Card>
-          )
-        })}
-      </div>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        {/* reports bar chart */}
+        <BarChartComp />
 
-      <div className="grid gap-4 lg:grid-cols-2">
-        <Card className="p-4">
-          <h2 className="mb-2 font-semibold">Recent Reports</h2>
-          <p className="text-sm text-muted-foreground">12 new content reports requiring review</p>
-        </Card>
-        <Card className="p-4">
-          <h2 className="mb-2 font-semibold">Photo Queue</h2>
-          <p className="text-sm text-muted-foreground">89 profile photos awaiting verification</p>
-        </Card>
+        <AgTable
+          columnDefs={[
+            {
+              field: "reporter",
+              headerName: "Reporter",
+              cellRenderer: "tableUserCell",
+            },
+            {
+              field: "reportedUser",
+              headerName: "Reported User",
+              cellRenderer: "tableUserCell",
+            },
+            { field: "reason", headerName: "Reason" },
+            { field: "date", headerName: "Date" },
+            {
+              field: "action",
+              headerName: "Action",
+              maxWidth: 100,
+              cellRenderer: "reportActionCell",
+            },
+          ]}
+          rowData={[
+            {
+              reporter: "Alice",
+              reportedUser: "Bob",
+              reason: "Inappropriate Content",
+              date: "2024-06-01",
+              action: "Pending",
+            },
+            {
+              reporter: "Charlie",
+              reportedUser: "Dave",
+              reason: "Harassment",
+              date: "2024-06-02",
+              action: "Under Review",
+            },
+            {
+              reporter: "Eve",
+              reportedUser: "Frank",
+              reason: "Spam",
+              date: "2024-06-03",
+              action: "Resolved",
+            },
+            {
+              reporter: "Grace",
+              reportedUser: "Heidi",
+              reason: "Fake Profile",
+              date: "2024-06-04",
+              action: "Pending",
+            },
+          ]}
+        />
       </div>
     </div>
   )
