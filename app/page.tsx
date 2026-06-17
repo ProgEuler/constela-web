@@ -1,17 +1,8 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { ArrowRight, Shield } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
 import { roles } from "@/navigation/roles"
 import { setClientCookie } from "@/lib/cookie.client"
 

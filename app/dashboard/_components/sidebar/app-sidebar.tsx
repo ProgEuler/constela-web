@@ -21,7 +21,7 @@ import { NavGroup } from "@/navigation/sidebar-items"
 import type { RoleSlug } from "@/navigation/roles"
 import { getNavItemsForRole } from "@/navigation/roles"
 import Image from "next/image"
-import logo from "@/assets/svg/logo.svg"
+import logo from "@/assets/png/logo.png"
 
 function buildNavGroupsForRole(slug: RoleSlug): NavGroup[] {
   const items = getNavItemsForRole(slug)
