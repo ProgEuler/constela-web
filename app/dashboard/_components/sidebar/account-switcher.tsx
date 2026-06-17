@@ -1,10 +1,10 @@
-"use client";
+"use client"
 
-import { useState } from "react";
+import { useState } from "react"
 
-import { BadgeCheck, Bell, Check, CreditCard, LogOut } from "lucide-react";
+import { BadgeCheck, Bell, Check, LogOut } from "lucide-react"
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,35 +12,43 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { cn, getInitials } from "@/lib/utils";
+} from "@/components/ui/dropdown-menu"
+import { cn, getInitials } from "@/lib/utils"
 
 export function AccountSwitcher({
   users,
 }: {
   readonly users: ReadonlyArray<{
-    readonly id: string;
-    readonly name: string;
-    readonly email: string;
-    readonly avatar: string;
-    readonly role: string;
-  }>;
+    readonly id: string
+    readonly name: string
+    readonly email: string
+    readonly avatar: string
+    readonly role: string
+  }>
 }) {
-  const [activeUser, setActiveUser] = useState(users[0]);
+  const [activeUser, setActiveUser] = useState(users[0])
 
   if (!activeUser) {
-    return null;
+    return null
   }
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Avatar className="size-8 rounded-lg">
-          <AvatarImage src={activeUser.avatar || undefined} alt={activeUser.name} />
+          <AvatarImage
+            src={activeUser.avatar || undefined}
+            alt={activeUser.name}
+          />
           <AvatarFallback>{getInitials(activeUser.name)}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="min-w-56 space-y-1 rounded-lg" side="bottom" align="end" sideOffset={4}>
+      <DropdownMenuContent
+        className="min-w-56 space-y-1 rounded-lg"
+        side="bottom"
+        align="end"
+        sideOffset={4}
+      >
         {users.map((user) => (
           <DropdownMenuItem
             key={user.email}
@@ -60,7 +68,7 @@ export function AccountSwitcher({
               <span
                 className={cn(
                   "mr-1 flex size-5 items-center justify-center rounded-full text-primary opacity-0",
-                  user.id === activeUser.id && "opacity-100",
+                  user.id === activeUser.id && "opacity-100"
                 )}
               >
                 <Check aria-hidden="true" />
@@ -75,10 +83,6 @@ export function AccountSwitcher({
             Account
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <CreditCard />
-            Billing
-          </DropdownMenuItem>
-          <DropdownMenuItem>
             <Bell />
             Notifications
           </DropdownMenuItem>
@@ -90,5 +94,5 @@ export function AccountSwitcher({
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }

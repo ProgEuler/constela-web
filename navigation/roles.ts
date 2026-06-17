@@ -36,18 +36,27 @@ export const roles: RoleConfig[] = [
   {
     slug: "super-admin",
     label: "Super Admin",
-    description: "Full access to all system features, settings, and user management.",
+    description:
+      "Full access to all system features, settings, and user management.",
     icon: Shield,
     color: "from-red-500 to-rose-600",
     navItems: [
-      { title: "Dashboard", url: "/dashboard/super-admin", icon: LayoutDashboard },
+      {
+        title: "Dashboard",
+        url: "/dashboard/super-admin",
+        icon: LayoutDashboard,
+      },
       { title: "Users", url: "/dashboard/users", icon: Users },
       { title: "Matches", url: "/dashboard/matches", icon: Heart },
-      { title: "Subscriptions", url: "/dashboard/subscriptions", icon: CreditCard },
+      {
+        title: "Subscriptions",
+        url: "/dashboard/subscriptions",
+        icon: CreditCard,
+      },
       { title: "Payments", url: "/dashboard/payments", icon: DollarSign },
       { title: "Reports", url: "/dashboard/reports", icon: Signal },
       { title: "Moderation", url: "/dashboard/moderation", icon: Shield },
-      { title: "Chat", url: "/dashboard/chat", icon: MessageSquare },
+      { title: "Chat Rooms", url: "/dashboard/chat-room", icon: MessageSquare },
       { title: "Settings", url: "/dashboard/settings", icon: Settings },
     ],
   },
@@ -69,13 +78,22 @@ export const roles: RoleConfig[] = [
   {
     slug: "moderator",
     label: "Moderator",
-    description: "Review reports, verify photos, and monitor platform activity.",
+    description:
+      "Review reports, verify photos, and monitor platform activity.",
     icon: Eye,
     color: "from-emerald-500 to-teal-600",
     navItems: [
-      { title: "Dashboard", url: "/dashboard/moderator", icon: LayoutDashboard },
+      {
+        title: "Dashboard",
+        url: "/dashboard/moderator",
+        icon: LayoutDashboard,
+      },
       { title: "Reports", url: "/dashboard/reports", icon: Signal },
-      { title: "Photo Verification", url: "/dashboard/photo-verification", icon: Camera },
+      {
+        title: "Photo Verification",
+        url: "/dashboard/photo-verification",
+        icon: Camera,
+      },
     ],
   },
   {
@@ -85,8 +103,16 @@ export const roles: RoleConfig[] = [
     icon: TicketCheck,
     color: "from-amber-500 to-orange-600",
     navItems: [
-      { title: "Overview", url: "/dashboard/overview", icon: ClipboardList },
-      { title: "Support Tickets", url: "/dashboard/support-tickets", icon: TicketCheck },
+      {
+        title: "Overview",
+        url: "/dashboard/support",
+        icon: ClipboardList,
+      },
+      {
+        title: "Support Tickets",
+        url: "/dashboard/support/support-tickets",
+        icon: TicketCheck,
+      },
     ],
   },
 ]
