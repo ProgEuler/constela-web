@@ -8,12 +8,12 @@ import {
   StickyNoteCheck,
   UserRoundX,
 } from "lucide-react"
-import StatCard from "@/components/shared/stat-card"
+import StatCard, { Stat } from "@/components/shared/stat-card"
 import { BarChartComp } from "@/components/charts/bar-chart"
 import { AgTable } from "@/components/shared/AgTable"
 
 export default function SuperAdminDashboard() {
-  const stats = [
+  const stats: Stat[] = [
     {
       label: "Pending Reports",
       value: "24,582",

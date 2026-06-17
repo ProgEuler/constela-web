@@ -324,75 +324,77 @@ export default function SupportDashboard() {
         >
           <AgTable
             gridOptions={{ rowHeight: 56 }}
-            columnDefs={[
-              {
-                headerName: "User",
-                field: "user",
-                cellRenderer: "tableUserCell",
-                maxWidth: 200,
-              },
-              {
-                headerName: "Subject",
-                field: "subject",
-                flex: 1,
-                minWidth: 700,
-                cellRenderer: (params: {
-                  value: { title: string; snippet: string }
-                }) => (
-                  <div className="flex flex-col">
-                    <span className="truncate text-sm">
-                      {params.value.title}
-                    </span>
-                    <span className="truncate text-xs text-muted-foreground">
-                      {params.value.snippet}
-                    </span>
-                  </div>
-                ),
-              },
-              {
-                headerName: "Received",
-                field: "received",
-                cellRenderer: (params: { value: string }) => (
-                  <div className="flex items-center gap-1.5 pt-3 text-xs font-medium text-muted-foreground">
-                    <Clock className="h-3.5 w-3.5" />
-                    {params.value}
-                  </div>
-                ),
-              },
-              {
-                headerName: "Priority",
-                field: "priority",
-                cellRenderer: (params: {
-                  value: { color: string; label: string }
-                }) => (
-                  <Badge variant="outline" className={params.value.color}>
-                    {params.value.label}
-                  </Badge>
-                ),
-              },
-              {
-                headerName: "Status",
-                field: "status",
-                cellRenderer: (params: { value: string }) => (
-                  <Badge
-                    variant="secondary"
-                    className="border-transparent bg-muted/50 font-medium text-muted-foreground hover:bg-muted/60"
-                  >
-                    {params.value}
-                  </Badge>
-                ),
-              },
-              {
-                headerName: "Action",
-                field: "action",
-                cellRenderer: (params: { value: string }) => (
-                  <Button>
-                    Open
-                    <ArrowRight />
-                  </Button>
-                ),
-              },
-            ]}
+            columnDefs={
+              [
+                //   {
+                //     headerName: "User",
+                //     field: "user",
+                //     cellRenderer: "tableUserCell",
+                //     maxWidth: 200,
+                //   },
+                //   {
+                //     headerName: "Subject",
+                //     field: "subject",
+                //     flex: 1,
+                //     minWidth: 700,
+                //     cellRenderer: (params: {
+                //       value: { title: string; snippet: string }
+                //     }) => (
+                //       <div className="flex flex-col">
+                //         <span className="truncate text-sm">
+                //           {params.value.title}
+                //         </span>
+                //         <span className="truncate text-xs text-muted-foreground">
+                //           {params.value.snippet}
+                //         </span>
+                //       </div>
+                //     ),
+                //   },
+                //   {
+                //     headerName: "Received",
+                //     field: "received",
+                //     cellRenderer: (params: { value: string }) => (
+                //       <div className="flex items-center gap-1.5 pt-3 text-xs font-medium text-muted-foreground">
+                //         <Clock className="h-3.5 w-3.5" />
+                //         {params.value}
+                //       </div>
+                //     ),
+                //   },
+                //   {
+                //     headerName: "Priority",
+                //     field: "priority",
+                //     cellRenderer: (params: {
+                //       value: { color: string; label: string }
+                //     }) => (
+                //       <Badge variant="outline" className={params.value.color}>
+                //         {params.value.label}
+                //       </Badge>
+                //     ),
+                //   },
+                //   {
+                //     headerName: "Status",
+                //     field: "status",
+                //     cellRenderer: (params: { value: string }) => (
+                //       <Badge
+                //         variant="secondary"
+                //         className="border-transparent bg-muted/50 font-medium text-muted-foreground hover:bg-muted/60"
+                //       >
+                //         {params.value}
+                //       </Badge>
+                //     ),
+                //   },
+                //   {
+                //     headerName: "Action",
+                //     field: "action",
+                //     cellRenderer: (params: { value: string }) => (
+                //       <Button>
+                //         Open
+                //         <ArrowRight />
+                //       </Button>
+                //     ),
+                //   },
+              ]
+            }
             rowData={[]}
           />
         </TabsContent>

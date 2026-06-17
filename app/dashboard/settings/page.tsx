@@ -10,7 +10,8 @@ type AdminRow = {
   email: string
   role: AdminUser["role"]
   status: string
-  lastLogin: string
+  lastLogin: string,
+   actions: string
 }
 
 const adminRows: AdminRow[] = [
@@ -21,6 +22,7 @@ const adminRows: AdminRow[] = [
     role: "Admin",
     lastLogin: "2023-10-01 10:30:00",
     status: "Active",
+    actions: "",
   },
 ]
 

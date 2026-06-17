@@ -1,8 +1,6 @@
 "use client"
 
-import { Dot, Pointer, TrendingUp } from "lucide-react"
-import { Label, Pie, PieChart, Sector } from "recharts"
-import { PieSectorDataItem } from "recharts/types/polar/Pie"
+import { Pie, PieChart } from "recharts"
 
 import {
   Card,
@@ -73,13 +71,6 @@ export function PieChartComp() {
               nameKey="browser"
               innerRadius={60}
               strokeWidth={5}
-              activeIndex={0}
-              activeShape={({
-                outerRadius = 0,
-                ...props
-              }: PieSectorDataItem) => (
-                <Sector {...props} outerRadius={outerRadius + 10} />
-              )}
               fill="var(--color-primary)"
             />
           </PieChart>
