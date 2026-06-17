@@ -70,7 +70,7 @@ export const roles: RoleConfig[] = [
       { title: "Dashboard", url: "/dashboard/admin", icon: LayoutDashboard },
       { title: "Users", url: "/dashboard/users", icon: Users },
       { title: "Matches", url: "/dashboard/matches", icon: Heart },
-      { title: "Chat", url: "/dashboard/chat", icon: MessageSquare },
+      { title: "Chat Rooms", url: "/dashboard/chat-room", icon: MessageSquare },
       { title: "Moderation", url: "/dashboard/moderation", icon: Shield },
       { title: "Settings", url: "/dashboard/settings", icon: Settings },
     ],
