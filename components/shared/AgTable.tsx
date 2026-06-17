@@ -328,6 +328,7 @@ export function AgTable<TData extends object>({
 
   return (
     <AgGridProvider modules={modules}>
+      <div>
       {title ? (
         <h2 className="mb-3 text-base font-medium text-foreground">{title}</h2>
       ) : null}
@@ -359,6 +360,7 @@ export function AgTable<TData extends object>({
           )}
           {...gridOptions}
         />
+      </div>
       </div>
     </AgGridProvider>
   )
