@@ -294,7 +294,7 @@ export default function SupportDashboard() {
                 cellRenderer: (params: { value: string }) => (
                   <Button
                     onClick={() =>
-                      router.push(`/dashboard/support-tickets/${params.value}`)
+                      router.push(`/dashboard/support/support-tickets/${params.value}`)
                     }
                   >
                     Open
