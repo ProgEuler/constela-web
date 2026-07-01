@@ -23,7 +23,7 @@ export default function Page() {
         columnDefs={[
           { headerName: "Match ID", field: "matchId" },
           {
-            headerName: "Participants",
+            headerName: "Participants ID",
             field: "participants",
             cellRenderer: "tableUserCell",
           },
@@ -34,14 +34,14 @@ export default function Page() {
         rowData={[
           {
             matchId: "M12345",
-            participants: "Alice, Bob",
+            participants: "u234, u567",
             messages: 45,
             date: "2023-10-01",
             status: "Active",
           },
           {
             matchId: "M67890",
-            participants: "Charlie, Dave",
+            participants: "u890, u123",
             messages: 30,
             date: "2023-10-02",
             status: "Completed",

@@ -15,10 +15,6 @@ type TableUserCellRendererParams = {
 
 export function TableUserCell({ name, description }: TableUserCellProps) {
   return (
-    <div className="flex min-w-0 items-center gap-3">
-      <Avatar className="bg-muted text-muted-foreground">
-        <AvatarFallback>{getInitials(name)}</AvatarFallback>
-      </Avatar>
       <div className="min-w-0">
         <div className="truncate text-sm font-medium text-foreground">
           {name}
@@ -29,7 +25,6 @@ export function TableUserCell({ name, description }: TableUserCellProps) {
           </div>
         ) : null}
       </div>
-    </div>
   )
 }
 

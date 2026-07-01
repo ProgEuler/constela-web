@@ -10,7 +10,7 @@ export default function Page() {
         height={800}
         components={{ userActionsCell: UserActionsCell }}
         columnDefs={[
-          { field: "name", headerName: "User", cellRenderer: "tableUserCell", minWidth: 160 },
+          { field: "name", headerName: "Username", cellRenderer: "tableUserCell", minWidth: 160 },
           { field: "id", headerName: "ID", maxWidth: 80 },
           { field: "email", headerName: "Email", minWidth: 220 },
           { field: "location", headerName: "Location", minWidth: 220 },
