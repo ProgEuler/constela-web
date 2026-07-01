@@ -1,6 +1,6 @@
 "use client"
 
-import { Ban, Calendar, MessageSquare, MoreVertical, Shield, UserMinus, Users } from "lucide-react"
+import { Ban, Calendar, MessageSquare, MoreVertical, Pencil, Shield, Trash2, UserMinus, Users } from "lucide-react"
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
@@ -20,9 +20,15 @@ import type { ChatRoomDetail } from "./chat-rooms-data"
 
 interface RoomDetailPanelProps {
   room: ChatRoomDetail | null
+  onRename: () => void
+  onDelete: () => void
 }
 
-export default function RoomDetailPanel({ room }: RoomDetailPanelProps) {
+export default function RoomDetailPanel({
+  room,
+  onRename,
+  onDelete,
+}: RoomDetailPanelProps) {
   if (!room) {
     return (
       <div className="flex h-full items-center justify-center">
@@ -58,6 +64,34 @@ export default function RoomDetailPanel({ room }: RoomDetailPanelProps) {
               {room.description}
             </p>
           </div>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon-sm"
+                title="Room actions"
+                aria-label="Room actions"
+              >
+                <MoreVertical className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-48">
+              <DropdownMenuItem className="gap-2.5" onSelect={onRename}>
+                <Pencil className="h-4 w-4" />
+                Rename
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                variant="destructive"
+                className="gap-2.5"
+                onSelect={onDelete}
+              >
+                <Trash2 className="h-4 w-4" />
+                Delete
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
 
         <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
