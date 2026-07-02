@@ -7,6 +7,8 @@ import { APP_CONFIG } from "@/config/app-config"
 import { Metadata } from "next"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { Toaster } from "sonner"
+import { QueryProvider } from "@/components/providers/query-provider"
+import { AuthStoreProvider } from "@/stores/auth/auth-provider"
 
 const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-sans" })
 
@@ -39,10 +41,14 @@ export default function RootLayout({
     >
       <body>
         <ThemeProvider>
-          <TooltipProvider>
-            {children}
-            <Toaster />
-          </TooltipProvider>
+          <AuthStoreProvider>
+            <QueryProvider>
+              <TooltipProvider>
+                {children}
+                <Toaster />
+              </TooltipProvider>
+            </QueryProvider>
+          </AuthStoreProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -14,6 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { cn, getInitials } from "@/lib/utils"
+import { useLogout } from "@/hooks/useAuth"
 
 export function AccountSwitcher({
   users,
@@ -27,6 +28,7 @@ export function AccountSwitcher({
   }>
 }) {
   const [activeUser, setActiveUser] = useState(users[0])
+  const logoutMutation = useLogout()
 
   if (!activeUser) {
     return null
@@ -88,9 +90,16 @@ export function AccountSwitcher({
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem
+          onSelect={(event) => {
+            event.preventDefault();
+            logoutMutation.mutate();
+          }}
+          disabled={logoutMutation.isPending}
+          aria-disabled={logoutMutation.isPending}
+        >
           <LogOut />
-          Log out
+          {logoutMutation.isPending ? "Signing out…" : "Log out"}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

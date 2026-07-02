@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from "@/components/ui/sidebar";
 import { getInitials } from "@/lib/utils";
+import { useLogout } from "@/hooks/useAuth";
 
 export function NavUser({
   user,
@@ -25,6 +26,7 @@ export function NavUser({
   };
 }) {
   const { isMobile } = useSidebar();
+  const logoutMutation = useLogout();
 
   return (
     <SidebarMenu>
@@ -76,9 +78,16 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem
+              onSelect={(event) => {
+                event.preventDefault();
+                logoutMutation.mutate();
+              }}
+              disabled={logoutMutation.isPending}
+              aria-disabled={logoutMutation.isPending}
+            >
               <LogOut />
-              Log out
+              {logoutMutation.isPending ? "Signing out…" : "Log out"}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
